@@ -2,14 +2,17 @@
 
 # Function to display WebBlocker ASCII art banner
 display_banner() {
-    echo "  ______           _           _     _"
-    echo " |  ____|         | |         | |   | |"
-    echo " | |__ _ __   __ _| |_ __ _ __| |___| | ___  __ _ _ __ ___   __ _"
-    echo " |  __| '_ \ / _\` | __/ _\` / __| / __| |/ _ \/ _\` | '_ \` _ \ / _\` |"
-    echo " | |____| | | | (_| | || (_| \__ \ \__ \ |  __/ (_| | | | | | | (_| |"
-    echo " |______|_| |_|\__,_|\__\__,_|___/_|___/_|\___|\__, |_| |_| |_|\__,_|"
-    echo "                                                  __/ |"
-    echo "                                                 |___/"
+    clear  # Clear the terminal
+    echo "  _____           _           _     _"
+    echo " |  __ \         | |         | |   | |"
+    echo " | |__) |   _ ___| |_   _  __| |___| | ___  __ _ _ __ ___   __ _"
+    echo " |  ___/ | | / __| | | | |/ _\` / __| |/ _ \/ _\` | '_ \` _ \ / _\` |"
+    echo " | |   | |_| \__ \ | |_| | (_| \__ \ |  __/ (_| | | | | | | (_| |"
+    echo " |_|    \__,_|___/\_\__,_|\__,_|___/_|\___|\__, |_| |_| |_|\__,_|"
+    echo "                                            __/ |"
+    echo "                                           |___/"
+    echo "Welcome to WebBlocker - Your website blocking tool!"
+    echo "Crafted by Thisizasif"
 }
 
 # Function to block the website
@@ -24,7 +27,7 @@ block_website() {
     echo "Blocking website: $website"
 
     # Simulate blocking by sleeping for a few seconds
-    sleep 10
+    sleep 5
 }
 
 # Function to unblock the website
@@ -57,3 +60,4 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
+
