@@ -1,4 +1,4 @@
-Certainly! Here's an updated `Readme.md` specifically tailored for running the WebBlocker tool in Termux:
+Certainly! To make the commands in the `Readme.md` file more copyable in Termux, you can use triple backticks for code blocks. Here's an updated version:
 
 ```markdown
 # WebBlocker for Termux
@@ -18,7 +18,7 @@ WebBlocker is a simple script designed for Termux, allowing you to block and unb
 
 ```bash
 # Clone the WebBlocker repository
-git clone https://github.com/your-username/WebBlocker.git
+git clone https://github.com/thisizasif/WebBlocker.git
 
 # Navigate to the WebBlocker directory
 cd WebBlocker
@@ -45,5 +45,4 @@ WebBlocker is a simple tool created for educational purposes. It simulates websi
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
 ```
